@@ -1,0 +1,36 @@
+apiVersion: middleware.io/v1alpha1
+kind: RocketMQ
+metadata:
+  name: rocketmq
+  namespace: ops-middleware
+spec:
+  # Add fields here
+  nameSrv:
+    num: 2
+    resources:
+      requests:
+        cpu: 200m
+        memory: 1Gi
+      limits:
+        cpu: 200m
+        memory: 1Gi
+    xmx: 512m # jvm Xmx Xms params
+    xmn: 256m # jvm Xmn params
+  masterSlave:
+    num: 2 # support update
+    resources:
+      requests:
+        cpu: 200m
+        memory: 1Gi
+      limits:
+        cpu: 200m
+        memory: 2Gi
+    xmx: 1g # jvm Xmx Xms params
+    xmn: 512m # jvm Xmn params
+    maxDirectMemorySize: 512m # jvm MaxDirectMemorySize params
+    mode: async # sync ro async
+    # broker storage
+    # storageClass: alicloud-nas
+    # storageSize: 2Gi
+  # deploy rocketmq-console-ng, optional
+  console: true
